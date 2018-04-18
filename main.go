@@ -7,6 +7,8 @@ import (
 	"github.com/Sirupsen/logrus"
 	"github.com/alexbadm/step-by-step/version"
 	common_handlers "github.com/k8s-community/handlers"
+
+	"github.com/k8s-community/utils/shutdown"
 	"github.com/takama/router"
 )
 
@@ -33,5 +35,15 @@ func main() {
 		c.Code(http.StatusOK).Body(http.StatusText(http.StatusOK))
 	})
 
-	r.Listen("0.0.0.0:" + port)
+	go r.Listen("0.0.0.0:" + port)
+
+	logger := log.WithField("event", "shutdown")
+	sdHandler := shutdown.NewHandler(logger)
+	sdHandler.RegisterShutdown(sd)
+}
+
+// sd does graceful dhutdown of the service
+func sd() (string, error) {
+	// if service has to finish some tasks before shutting down, these tasks must be finished her
+	return "Ok", nil
 }
