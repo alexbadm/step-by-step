@@ -1,6 +1,7 @@
-package: github.com/alexbadm/step-by-step
+
+package: github.com/k8s-community/step-by-step
 import:
 - package: github.com/Sirupsen/logrus
-  version: ^1.0.5
+  version: v0.11.5
 - package: github.com/takama/router
-  version: ^0.6.5
+  version: 0.6.3

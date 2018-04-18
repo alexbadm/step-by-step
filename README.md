@@ -30,3 +30,40 @@ You can try any other router.
 For example, one of the most popular solutions is [julienschmidt/httprouter](https://github.com/julienschmidt/httprouter).
 
 Don't forget to check if tests are still green (`go test -v`) and change them if it is necessary.
+
+## Step 05. Add logger
+
+Add logger to log requests. [Sirupsen/logrus](https://github.com/Sirupsen/logrus) is my favourite!
+
+## Step 06. Add dependency management
+
+For this workshop we choose [glide](https://glide.sh). 
+After installation of glide run `glide init` to initialize dependency management and `glide install` to install
+dependencies. Feel free to use `glide up` to check for dependencies updates.
+
+In this example we ignore `vendor` directory and `glide.lock` file. But in real "production" cases it's
+better to commit `vendor` or at least `glide.lock` to be able to reach dependencies in an emergency situation.
+
+## Step 07. Get service configuration from ENV
+
+It's very important to store service configuration in the environment.
+So, ENV variables is, probably, the simplest way to deal with config.
+
+## Step 08. Run service in Docker
+
+We believe what Dockerfile of any application must be as tiny as it possible.
+For simple services like this one, we can use `FROM scratch` construction and provide
+very tiny Docker image.
+
+Let's compile our service with special tags: 
+
+    env CGO_ENABLED=0 GOOS=linux go build
+
+and make a container with the binary:
+
+    docker build -t step-by-step -f ./Dockerfile .
+    
+Run service on Docker:
+
+    docker run -p 8000:8000 step-by-step 
+
