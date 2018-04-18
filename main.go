@@ -5,8 +5,8 @@ import (
 	"os"
 
 	"github.com/Sirupsen/logrus"
+	"github.com/alexbadm/step-by-step/version"
 	common_handlers "github.com/k8s-community/handlers"
-	"github.com/k8s-community/step-by-step/version"
 	"github.com/takama/router"
 )
 

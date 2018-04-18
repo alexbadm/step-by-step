@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/k8s-community/step-by-step/version"
+	"github.com/alexbadm/step-by-step/version"
 	"github.com/takama/router"
 )
 
